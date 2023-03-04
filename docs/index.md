@@ -18,8 +18,8 @@ Besides support for plain RSS and Atom we offer some extensions:
 | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [ROME Certiorem](rome-certiorem/index.md) (deprecated) | [PubSubHubub](https://en.wikipedia.org/wiki/WebSub) protocol for ROME.                                                                                                                                                                                                                                |
 | [ROME Fetcher](rome-fetcher/index.md) (deprecated)     | A caching feed fetcher that supports retrieval of feeds via [HTTP conditional GET](http://fishbowl.pastiche.org/2002/10/21/http_conditional_get_for_rss_hackers). Supports ETags, GZip compression and [RFC3229 Delta encoding](https://en.wikipedia.org/wiki/Delta_encoding#Delta_encoding_in_HTTP). |
-| [ROME Modules](rome-modules/index.md)                  | Provide support for feed extensions such as GeoRSS, iTunes, Microsoft SSE and SLE, Google GData and others.                                                                                                                                                                                           |
-| [ROME OPML](rome-opml/index.md)                        | Outline Processor Markup Language (OPML) parser and tools.                                                                                                                                                                                                                                            |
+| [ROME Modules](rome-modules/index.md)                  | Provides support for feed extensions such as GeoRSS, iTunes Podcasting, Yahoo MediaRSS and others.                                                                                                                                                                                                    |
+| [ROME OPML](rome-opml/index.md)                        | Support for the Outline Processor Markup Language (OPML).                                                                                                                                                                                                                                             |
 | [ROME Propono](rome-propono/index.md) (deprecated)     | Supports publishing protocols, specifically the Atom Publishing Protocol and the legacy MetaWeblog API. Propono includes an Atom client library, an Atom server framework and a Blog client that supports both the Atom protocol and the MetaWeblog API.                                              |
 
 ## Motivation
@@ -36,7 +36,7 @@ that the library must be:
 - **E**asy to use: given a URL, get back a feed object independent of the
   underlying format, and serialize the feed object to the format I want.
 - **S**imple: RSS initially stood for _Really Simple Syndication_[^1] and this
-  simplicity is what made the format successful. Specifications wars have made
+  simplicity is what made the format successful. Specification wars have made
   the current situation much more complicated. The goal of the library is to
   give that simplicity back to developers: each API we use force on us a mental
   model of the domain and we are using more and more libraries on each project

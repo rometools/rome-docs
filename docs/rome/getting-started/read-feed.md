@@ -7,11 +7,10 @@ feed using ROME are the following lines of code:
 
 ```java
 File file = new File("feed.xml");
-SyndFeedInput input = new SyndFeedInput();
-SyndFeed feed = input.build(file);
+SyndFeed feed = new SyndFeedInput().build(file);
 System.out.println(feed);
 ```
 
 !!! Note 
-    SyndFeedInput supports additional input types. Please have a look at the 
+    `SyndFeedInput` supports additional input types. Please take a look at the 
     Javadoc.
