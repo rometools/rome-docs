@@ -1,0 +1,64 @@
+site_name: ROME
+
+theme:
+  name: material
+  font: false
+
+extra_css:
+  - style.css
+
+markdown_extensions:
+  - admonition
+  - footnotes
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.critic
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+nav:
+  - 'Home': 'index.md'
+  - 'Getting started':
+    - 'Installation': 'rome-core/getting-started/installation.md'
+    - 'Create feed': 'rome-core/getting-started/create-feed.md'
+    - 'Read feed': 'rome-core/getting-started/read-feed.md'
+    - 'Convert feed': 'rome-core/getting-started/convert-feed.md'
+    - 'Aggregate feeds': 'rome-core/getting-started/aggregate-feeds.md'
+    - 'Preserve WireFeed': 'rome-core/getting-started/preserve-wirefeed.md'
+    - 'Create a custom module': 'rome-core/getting-started/custom-module.md'
+    - 'Create a feed Servlet': 'rome-core/getting-started/feed-servlet.md'
+  - 'Technical Documentation':
+    - 'Bean Utilities': 'rome-core/technical-docs/bean-utilities.md'
+    - 'Common classes and interfaces': 'rome-core/technical-docs/common-classes-and-interfaces.md'
+    - 'CopyFrom Interface': 'rome-core/technical-docs/copyfrom-interface.md'
+    - 'Date mapping': 'rome-core/technical-docs/date-mapping.md'
+    - 'Date parsing': 'rome-core/technical-docs/date-parsing.md'
+    - 'Encoding detection': 'rome-core/technical-docs/encoding-detection.md'
+    - 'Feed parsing': 'rome-core/technical-docs/feed-parsing.md'
+    - 'OSGi': 'rome-core/technical-docs/osgi.md'
+    - 'Plugin Mechanism': 'rome-core/technical-docs/plugin-mechanism.md'
+    - 'URI Mapping': 'rome-core/technical-docs/uri-mapping.md'
+  - 'ROME Certiorem':
+    - 'Introduction': 'rome-certiorem/index.md'
+    - 'Getting started': 'rome-certiorem/getting-started.md'
+  - 'ROME Fetcher': 'rome-fetcher/index.md'
+  - 'ROME Modules':
+    - 'Overview': 'rome-modules/index.md'
+    - 'A9 OpenSearch': 'rome-modules/a9-opensearch.md'
+    - 'Content': 'rome-modules/content.md'
+    - 'Creative Commons': 'rome-modules/creative-commons.md'
+    - 'GeoRSS': 'rome-modules/georss.md'
+    - 'Google Base': 'rome-modules/google-base.md'
+    - 'iPhoto Photocasting': 'rome-modules/iphoto-photocasting.md'
+    - 'iTunes Podcasting': 'rome-modules/itunes-podcasting.md'
+    - 'Microsoft Simple List Extensions': 'rome-modules/microsoft-simple-list-extensions.md'
+    - 'Microsoft Simple Sharing Extensions': 'rome-modules/microsoft-simple-sharing-extensions.md'
+    - 'Slash': 'rome-modules/slash.md'
+    - 'Yahoo! MediaRSS': 'rome-modules/yahoo-mediarss.md'
+    - 'Yahoo! Weather': 'rome-modules/yahoo-weather.md'
+  - 'ROME OPML': 'rome-opml/index.md'
+  - 'ROME Propono': 'rome-propono/index.md'
+  - 'FAQ': 'faq.md'
