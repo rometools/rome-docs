@@ -1,20 +1,16 @@
 # Feed parsing
 
-!!! warning "TODO"
-    This page needs to be revised
-
 ROME is based around an idealized and abstract model of a Newsfeed or
-"Syndication Feed". ROME can parse any format of Newsfeed, including RSS
-variants and Atom, into this model. ROME can convert from model representation
-to any of the same Newfeed output formats.
+*Syndication Feed*. ROME is able to parse any RSS and Atom feed into this model
+and to covert between the different formats.
 
 Internally, ROME defines intermediate object models for specific Newsfeed
-formats, or "Wire Feed" formats, including both Atom and all RSS variants. For
-each format, there is a separate parser class that parses XML into an
-intermediate model. ROME provides "converters" to convert between the
-intermediate Wire Feed models and the idealized Syndication Feed model.
+formats, or *WireFeed* formats, including both Atom and RSS variants. For each
+format, there is a separate parser that parses XML into an intermediate model.
+ROME provides *Converters* to convert between the intermediate *WireFeed* models
+and the idealized *SyndFeed* model.
 
-Here is what happens during ROME Newsfeed parsing:
+Here is what happens when ROME parses a feed:
 
 ![](overview.png)
 
@@ -36,6 +32,6 @@ Here is what happens during ROME Newsfeed parsing:
 
 ## Extensions
 
-ROME supports Newsfeed extension modules for all formats that also support
-modules: RSS 1.0, RSS 2.0, and Atom. Standard modules such as Dublic Core and
-Syndication are supported and you can define your own custom modules too.
+ROME supports extension for RSS 1.0, RSS 2.0 and Atom. Standard modules such as
+Dublic Core and Syndication are supported and you can define your own custom
+modules too.

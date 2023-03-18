@@ -40,12 +40,15 @@ it is the class of the Bean using the ToStringBean.
 public class MyBean {
 
     public Foo getFoo() { ... }
+
     public void setFoo(Foo foo) { ... }
 
     public String getName() { ... }
+
     public void setName(String name) { ... }
 
     public List getValues() { ... }
+
     public void setValues(List values) { ... }
 
     public String toString(String prefix) {
@@ -56,6 +59,7 @@ public class MyBean {
     public String toString() {
         return toString("myBean");
     }
+
 }
 ```
 
@@ -71,12 +75,15 @@ EqualsBean class works on array, collection, bean and basic type properties.
 public class MyBean  {
 
     public Foo getFoo() { ... }
+
     public void setFoo(Foo foo) { ... }
 
     public String getName() { ... }
+
     public void setName(String name) { ... }
 
     public List getValues() { ... }
+
     public void setValues(List values) { ... }
 
     public boolean equals(Object obj) {
@@ -88,6 +95,7 @@ public class MyBean  {
         EqualsBean equals = new EqualsBean(MyBean.class,this);
         return equals.beanHashCode();
     }
+
 }
 ```
 
@@ -101,18 +109,22 @@ works on array, collection, bean and basic type properties.
 public class MyBean implements Cloneable {
 
     public Foo getFoo() { ... }
+
     public void setFoo(Foo foo) { ... }
 
     public String getName() { ... }
+
     public void setName(String name) { ... }
 
     public List getValues() { ... }
+
     public void setValues(List values) { ... }
 
     public Object clone() {
         CloneableBean cBean = new CloneableBean(this);
         return cBean.beanClone();
     }
+
 }
 ```
 
@@ -140,13 +152,17 @@ public class MyBean extends ObjectBean {
     }
 
     public Foo getFoo() { ... }
+
     public void setFoo(Foo foo) { ... }
 
     public String getName() { ... }
+
     public void setName(String name) { ... }
 
     public List getValues() { ... }
+
     public void setValues(List values) { ... }
+
 }
 ```
 

@@ -1,30 +1,24 @@
 # Date mapping
 
-!!! warning "TODO"
-    This page needs to be revised
-
 The different RSS versions and Atom define different date elements at feed and
 entry level. Some of them also define syndication information indicating when
 (and when not) and how often to fetch feeds for updates. There is not always a
 possible mapping or conversion of this information when going from one format to
 another.
 
-As this is still subject of debate ([How About a
-Date](http://www.tbray.org/ongoing/When/200x/2004/07/30/Dates) and [Date
-Survey](http://www.intertwingly.net/wiki/pie/DateSurvey)), for now, in Rss and
-atOM utilitiEs (ROME) we've taken a simplistic approach.
+In ROME we've taken a simplistic approach, as this is still subject of debate
+([How About a Date](http://www.tbray.org/ongoing/When/200x/2004/07/30/Dates) and
+[Date Survey](http://www.intertwingly.net/wiki/pie/DateSurvey)).
 
-When handling feeds at WireFeed level, `rss.Channel` or `atom.Feed`, it is
-possible to access all the date elements and syndication information available
-in the feed.
+When handling feeds at WireFeed level (`Channel` or `Feed`) it is possible to
+access all the date elements and syndication informations available in the feed.
 
-When handling feeds at SyndFeed level, `synd.SyndFeed`, there is only one date
-element available, the `publishedDate`. Both, `SyndFeed` and `SyndEntry` have
-the `publisheDate` property. In addition, it is possible to use the Syndication
-Module.
+When handling feeds at `SyndFeed` level, there is only the `publishedDate` date
+element available on `SyndFeed` and `SyndEntry`. In addition, it is possible to
+use the Syndication module.
 
-The mapping of the date elements from the different feed formats to SyndFeed is
-as follows.
+The mapping of the date elements from the different feed formats to `SyndFeed`
+is as follows.
 
 ## For RSS 0.90
 
@@ -61,17 +55,15 @@ about the feed and the items.
 ## For Atom 0.3
 
 Atom 0.3 defines a `modified` element at feed level and the `modified`,
-`created` & `issued` elements at entry level.
+`created` and `issued` elements at entry level.
 
 The feed `modified` element is mapped to the `SyndFeed` `publishedDate`
 property.
 
 The item `modified` element is mapped to the `SyndEntry` `publishedDate`
-property. The entry elements, `created` and `issued`, are lost.
+property. The entry elements `created` and `issued` are lost.
 
 ## For Atom 1.0
-
-(Atom 1.0 supported in ROME since v0.8)
 
 Atom 1.0 defines an `updated` element at the feed level, which ROME maps to
 `SyndFeed.publishedDate`.

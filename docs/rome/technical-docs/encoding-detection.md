@@ -1,8 +1,5 @@
 # Encoding detection
 
-!!! warning "TODO"
-    This page needs to be revised
-
 Determining the charset set encoding of an XML document it may prove not as easy
 as it seems, and when the XML document is served over HTTP things get a little
 more hairy.
