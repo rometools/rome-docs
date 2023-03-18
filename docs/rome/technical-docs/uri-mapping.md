@@ -1,13 +1,10 @@
 # URI Mapping
 
-!!! warning "TODO"
-    This page needs to be revised
-
-Rss and atOM utilitiEs (ROME) Synd* beans define the concept of URI at both feed
-and entry levels. The purpose of this URI is to help uniquely identifying feeds
-and entries when processed with ROME. This is particularly useful when a system
-is persisting feeds and when doing data manipulation where a primary key for the
-feeds or the entries is needed.
+ROMEs `Synd*` beans define the concept of URI at both feed and entry levels. The
+purpose of this URI is to help uniquely identifying feeds and entries when
+processed with ROME. This is particularly useful when a system is persisting
+feeds and when doing data manipulation where a primary key for the feeds or the
+entries is needed.
 
 ## The Problem
 
@@ -32,7 +29,7 @@ id element to contain a normalized URI as defined by RFC 2396bis.
 The RSS0.94 and RSS 2.0 guid element and the Atom 0.3 id element are optional
 elements. Because of this, they may not be present at all in feeds.
 
-## ROME's Solution
+## ROMEs Solution
 
 Because the concept of a URI it is not defined in all the feed formats, ROME
 makes an arbitrary design decision to provide the URI functionality regardless
@@ -41,8 +38,8 @@ based on expected and assumed usage pattern of feed and entry data.
 
 ## URI Normalization
 
-If the uri property of a SyndFeed or SyndEntry bean is not NULL, the getter
-method must return a normalized URI following the rules defined in RFC2396bis.
+If the uri property of a `SyndFeed` or `SyndEntry` bean is not NULL, the getter
+method must return a normalized URI following the rules defined in RFC2396.
 
 ## Converting from WireFeed (RSS or Atom) to SyndFeed
 
@@ -56,21 +53,21 @@ properties.
 None of the RSS versions define an ID at channel level. In addition to this,
 ROME input classes (WireFeedInput and SyndFeedInput) do not have access to the
 URL (if any) used to fetch the feed. Because of this ROME does not set in the
-SyndFeed uri property , it is left to developer to set (if needed) a URI in the
-feed bean.
+SyndFeed uri property, it is left to the developer to set a URI in the feed bean
+if needed.
 
-In the case of Atom 0.3, if the id element is present in the feed, the
-SyndFeed uri property will be set with the value of the id element. If
-it is not present, the developer must set (if needed) a URI manually.
+In case of Atom 0.3, if the id element is present in the feed, the SyndFeed uri
+property will be set with the value of the id element. If it is not present, the
+developer must set a URI manually if needed.
 
 ### SyndEntry
 
-For RSS 0.91, RSS 0.92, RSS 0.93 & RSS 1.0 if the link element is present in the
-item, the SyndEntry uri property will be set with the value of the link element.
-Otherwise the SyndEntry uri property is left as NULL and the developer must set
-it (if needed).
+For RSS 0.91, RSS 0.92, RSS 0.93 and RSS 1.0 if the link element is present in
+the item, the SyndEntry uri property will be set with the value of the link
+element. Otherwise the SyndEntry uri property is left as NULL and the developer
+must set it (if needed).
 
-For RSS 0.94 & RSS 2.0 if the guid property is present in the item, the
+For RSS 0.94 and RSS 2.0 if the guid property is present in the item, the
 SyndEntry uri property will be set with the value of the guid element. If the
 guid element is not present, the SyndEntry uri property will be set with the
 value of the link element. If the link element is missing but the guid is
@@ -92,21 +89,21 @@ of properties.
 
 ### SyndFeed
 
-For RSS 0.91, RSS 0.92, RSS 0.93, RSS 1.0 & RSS 2.0 the SyndFeed uri property is
-lost as there is not possible representation in the channel element for it.
+For RSS 0.91, RSS 0.92, RSS 0.93, RSS 1.0 and RSS 2.0 the SyndFeed uri property
+is lost as there is not possible representation in the channel element for it.
 
 For Atom 0.3 set the SyndFeed uri property is set as the value for the id
 element.
 
 ### SyndEntry
 
-For RSS 0.91, RSS 0.92, RSS 0.93 & RSS 1.0 the SyndEntry uri property is lost as
-there is not possible representation in the item element for it.
+For RSS 0.91, RSS 0.92, RSS 0.93 and RSS 1.0 the SyndEntry uri property is lost
+as there is not possible representation in the item element for it.
 
-For RSS 0.94 & RSS 2.0 the SyndEntry uri property is set as the value of the
+For RSS 0.94 and RSS 2.0 the SyndEntry uri property is set as the value of the
 guid element with permalink set to false. If the SyndEntry uri property is not
 set, the SyndEntry link property is set as the value of the guid element with
-permalink set to true. Note that if the SyndFEntry linkproperty is missing the
+permalink set to true. Note that if the SyndEntry link property is missing the
 SyndEntry uri cannot be set as the value of the link element because it cannot
 be assumed that the uri property is an URL.
 

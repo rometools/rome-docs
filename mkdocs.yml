@@ -39,10 +39,10 @@ nav:
     - 'OSGi': 'rome/technical-docs/osgi.md'
     - 'Plugin mechanism': 'rome/technical-docs/plugin-mechanism.md'
     - 'URI mapping': 'rome/technical-docs/uri-mapping.md'
-  - 'ROME Certiorem':
+  - 'ROME Certiorem (deprecated)':
     - 'Introduction': 'rome-certiorem/index.md'
     - 'Getting started': 'rome-certiorem/getting-started.md'
-  - 'ROME Fetcher': 'rome-fetcher/index.md'
+  - 'ROME Fetcher (deprecated)': 'rome-fetcher/index.md'
   - 'ROME Modules':
     - 'Overview': 'rome-modules/index.md'
     - 'A9 OpenSearch': 'rome-modules/a9-opensearch.md'
@@ -58,5 +58,5 @@ nav:
     - 'Yahoo! MediaRSS': 'rome-modules/yahoo-mediarss.md'
     - 'Yahoo! Weather': 'rome-modules/yahoo-weather.md'
   - 'ROME OPML': 'rome-opml/index.md'
-  - 'ROME Propono': 'rome-propono/index.md'
+  - 'ROME Propono (deprecated)': 'rome-propono/index.md'
   - 'FAQ': 'faq.md'
