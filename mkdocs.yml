@@ -32,8 +32,7 @@ nav:
     - 'Create a custom module': 'rome/getting-started/custom-module.md'
   - 'Technical Documentation':
     - 'Bean Utilities': 'rome/technical-docs/bean-utilities.md'
-    - 'Common classes and interfaces': 'rome/technical-docs/common-classes-and-interfaces.md'
-    - 'CopyFrom Interface': 'rome/technical-docs/copyfrom-interface.md'
+    - 'CopyFrom interface': 'rome/technical-docs/copyfrom-interface.md'
     - 'Date mapping': 'rome/technical-docs/date-mapping.md'
     - 'Encoding detection': 'rome/technical-docs/encoding-detection.md'
     - 'Feed parsing': 'rome/technical-docs/feed-parsing.md'

@@ -1,99 +1,43 @@
-# Bean Utilities
+# Bean utilities
 
-!!! warning "TODO"
-    This page needs to be revised
+ROME contains some utility classes that help us implementing the *equals*,
+*hashCode*, *toString* and *clone* methods by using reflection. Although the
+classes are public they are not meant to be used outside of ROME and are subject
+to change (breaking backward compatibility).
 
-ROME bean utilities are not part of ROME public API. They are used by the
-default implementation of ROME beans and it may be useful for alternate
-implementations as well. It is important to keep in mind that these APIs are not
-public and they are subject to change breaking backward compatibility.
+## EqualsBean
 
-ROME *com.rometools.rome.feed.impl* package contains a set of Java classes that
-provide support for all the basic features Java Beans commonly must have:
-toString, equals, hashcode and cloning.
-
-By using these classes Beans don't have to hand code these functions. This
-greatly simplifies things when Beans have several properties, collection
-properties and composite properties.
-
-The *CloneableBean*, *EqualsBean*, *ToStringBean* and *ObjectBean* classes use
-instrospection on the properties of the classes using them. This is done
-recursively on all properties. All ROME Beans default implementations leverage
-these classes.
-
-## ToStringBean
-
-Beans implementing the ToString interface must implement the toString(String
-prefix) method. This method must print the bean properties names and values, one
-per per line, separating the name and value with an '=' sign and prefixing the
-name with the given prefix parameter using the same notation used in the JSP
-expression language used in JSTL and in JSP 2.0. This must be done recursively
-for all array, collection and ToString properties.
-
-The ToStringBean class provides an implementation of the toString() method
-producing a detailed output of all the properties of the Bean being processed.
-The ToStringBean constructor takes the class definition the ToStringBean class
-should use for properties scanning -using instrospection- for printing, normally
-it is the class of the Bean using the ToStringBean.
+The *EqualsBean* class provides a reflection-based implementation of the
+*equals* and *hashCode* methods.
 
 ```java
 public class MyBean {
 
-    public Foo getFoo() { ... }
+    // [...]
 
-    public void setFoo(Foo foo) { ... }
-
-    public String getName() { ... }
-
-    public void setName(String name) { ... }
-
-    public List getValues() { ... }
-
-    public void setValues(List values) { ... }
-
-    public String toString(String prefix) {
-        ToStringBean tsBean = new ToStringBean(MyBean.class,this);
-        return tsBean.toString(prefix);
+    public boolean equals(Object obj) {
+        return EqualsBean.beanEquals(MyBean.class, this, obj);
     }
 
-    public String toString() {
-        return toString("myBean");
+    public int hashCode() {
+        return EqualsBean.beanHashCode(this);
     }
 
 }
 ```
 
-## EqualBean
+## ToStringBean
 
-The EqualsBean class provides a recursive introspetion-based implementation of
-the equals() and hashCode() methods working on the Bean properties. The
-EqualsBean constructor takes the class definition that should be properties
-scanned (using introspection) by the equals() and thehashCode() methods. The
-EqualsBean class works on array, collection, bean and basic type properties.
+The *ToStringBean* class provides a reflection-based implementation of the
+*toString* method.
 
 ```java
-public class MyBean  {
+public class MyBean implements ToString {
 
-    public Foo getFoo() { ... }
+    // [...]
 
-    public void setFoo(Foo foo) { ... }
-
-    public String getName() { ... }
-
-    public void setName(String name) { ... }
-
-    public List getValues() { ... }
-
-    public void setValues(List values) { ... }
-
-    public boolean equals(Object obj) {
-        EqualsBean eBean = new EqualsBean(MyBean.class,this);
-        return eBean.beanEquals(obj);
-    }
-
-    public int hashCode() {
-        EqualsBean equals = new EqualsBean(MyBean.class,this);
-        return equals.beanHashCode();
+    public String toString() {
+        return ToStringBean.toString(MyBean.class, this);
     }
 
 }
@@ -101,69 +45,22 @@ public class MyBean  {
 
 ## CloneableBean
 
-The CloneableBean class provides a recursive introspetion-based implementation
-of the clone() method working on the Bean properties. The CloneableBean class
-works on array, collection, bean and basic type properties.
+The *CloneableBean* class provides a reflection-based implementation of the
+*clone* method.
 
 ```java
 public class MyBean implements Cloneable {
 
-    public Foo getFoo() { ... }
-
-    public void setFoo(Foo foo) { ... }
-
-    public String getName() { ... }
-
-    public void setName(String name) { ... }
-
-    public List getValues() { ... }
-
-    public void setValues(List values) { ... }
+    // [...]
 
     public Object clone() {
-        CloneableBean cBean = new CloneableBean(this);
-        return cBean.beanClone();
+        return CloneableBean().beanClone(this, ignore);
     }
 
 }
 ```
 
-By default, the CloneableBean copies all properties of the given object. It also
-supports an ignore-properties set, the property names in this set will not be
-copied to the cloned instance. This is useful for cases where the Bean has
-convenience properties (properties that are actually references to other
-properties or properties of properties). For example SyndFeed and SyndEntry
-beans have convenience properties, publishedDate, author, copyright and
-categories all of them mapped to properties in the DC Module.
-
-## ObjectBean
-
-The ObjectBean is a convenience bean providing ToStringBean, EqualsBean and
-CloneableBean functionality support. Also, ObjectBeans implements the
-Serializable interface making the beans serializable if all its properties are.
-Beans extending ObjectBean get toString(), equals(),hashCode() and clone()
-support as defined above.
-
-```java
-public class MyBean extends ObjectBean {
-
-    public MyBean() {
-        super(MyBean.class);
-    }
-
-    public Foo getFoo() { ... }
-
-    public void setFoo(Foo foo) { ... }
-
-    public String getName() { ... }
-
-    public void setName(String name) { ... }
-
-    public List getValues() { ... }
-
-    public void setValues(List values) { ... }
-
-}
-```
-
-It can also be used in delegation mode instead as some of the previous examples.
+It copies all properties whose names are not on the ignore list. This is useful
+for cases where the Bean has convenience properties (properties that are
+actually references to other properties or properties of properties). For
+example the *SyndFeed* and *SyndEntry* beans have such convenience properties.
