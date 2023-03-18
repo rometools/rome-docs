@@ -38,16 +38,16 @@ following dependency:
 The basic usage of ROME Fetcher is as follows:
 
 ```java
-# create cache
+// create cache
 FeedFetcherCache cache = HashMapFeedInfoCache.getInstance();
 
-# create fetcher
+// create fetcher
 FeedFetcher fetcher = new HttpURLFeedFetcher(cache);
 
-# fetch feed
-SyndFeed feed = fetcher.retrieveFeed(new URL("https://www.example.com/feed"));
+// fetch feed
+SyndFeed feed = fetcher.retrieveFeed(new URL("https://example.org/feed"));
 
-# print feed to stdout
+// print feed to stdout
 System.out.println(feed);
 ```
 

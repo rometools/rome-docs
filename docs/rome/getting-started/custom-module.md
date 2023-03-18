@@ -84,7 +84,7 @@ interface. The `getInterface()` method returns the interface of the
 implementation (necessary for collections containing subclasses such as a list
 of modules) and the `copyFrom()` method copies all the properties from the
 parameter object (which must be an implementation of the interface) into the
-caller bean properties. Note that your implementation has to make a deep copy.
+caller bean properties. Note that the `copyFrom` method has to make deep copies.
 
 ```java
 public class SampleModuleImpl extends ModuleImpl implements SampleModule {
@@ -143,12 +143,12 @@ the `ModuleParser` interface that defines the following methods:
 - `getNamespaceUri()` returns the URI of the module 
 - `parse(Element, Locale)` extracts the new properties from the given element
 
-The parser will be invokek with a feed element or an item element and has to
+The parser will be invoked with a feed element or an item element and has to
 extract the new properties from the children of the given element.
 
-When any of our newly supported elements was found, the parser returns an
-instance of our module, otherwise `null`. This is to avoid having an empty
-instance of a module that is not present in the feed or its entries.
+When any of our additional elements was found, the parser returns an instance of
+our module, otherwise `null`. This is to avoid having an empty instance of a
+module that is not present in the feed or its entries.
 
 ```java
 public class SampleModuleParser implements ModuleParser {
@@ -270,13 +270,12 @@ public class SampleModuleGenerator implements ModuleGenerator {
 ## Configuration
 
 The last step is to register our parser and/or generator in a Properties file
-called `rome.properties`. The file has to be in the root of the modules
-classpath.
+called `rome.properties` in the root of the classpath.
 
 The registration indicates:
 
 - which feed formats (only RSS 2.0 in this example) are supported
-- whether parsing and/or generating of feed and/or item elements is supported
+- whether parsing and/or generating feed and/or item elements is supported
 
 ```properties
 # register feed element parser
@@ -299,7 +298,7 @@ commas or spaces.
 
 ### Generate feed
 
-This is the code that was used to generate the example on top of the page:
+The following code was used to generate the example on top of the page:
 
 ```java
 // create entry
@@ -336,9 +335,9 @@ String xml = new SyndFeedOutput().outputString(feed);
 System.out.println(xml);
 ```
 
-### Parse feeds
+### Read feed
 
-This is an example how to extract the new fields:
+This is an example how to read the new fields:
 
 ```java
 File file = new File("feed.xml");

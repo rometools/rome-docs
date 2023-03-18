@@ -15,10 +15,9 @@ coordinates:
 
 ## Install from source
 
-To build the library from source you just have to install JDK 6 (or later),
-clone the source from [GitHub](https://github.com/rometools/rome) and install
-all modules using the provided
-[Maven Wrapper](https://maven.apache.org/wrapper/).
+To build the library from source you have to install JDK 6 (or later), clone the
+source from [GitHub](https://github.com/rometools/rome) and install all modules
+using the provided [Maven Wrapper](https://maven.apache.org/wrapper/).
 
 ### Linux
 

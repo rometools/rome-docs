@@ -1,10 +1,7 @@
-# Plugin Mechanism
+# Plugin mechanism
 
-!!! warning "TODO"
-    This page needs to be revised
-
-ROME has been designed around a plugin mechanism. All the supported feed types
-(RSSs and Atom) is done by plugins included in the distribution.
+ROME has been designed around a plugin mechanism. The support for every feed
+type is implemented as a plugin thats included in the distribution.
 
 Parsing feeds, generating feeds, converting feeds from a concrete feed to a
 SyndFeed and vice versa, parsing modules and generating modules is done using
@@ -15,30 +12,27 @@ replaced with alternate plugins.
 
 ## Plugins definition files
 
-Plugins are defined in a properties file, the `rome.properties` file.
+The default plugin definition file (`com/rometools/rome/rome.properties`) is
+included in the ROME JAR file. This is the first definition file to be processed
+and defines the default parsers, generators and converters for feeds and
+modules.
 
-The default plugins definition file is included in the ROME JAR file,
-`com/sun/syndication/rome.properties`, this is the first plugins definition file
-to be processed. It defines the default parsers, generators and converters for
-feeds and modules ROME provides.
+After loading the default file, ROME looks for additional `rome.properties` at
+the root of all classpath entries and appends the plugin definitions to the
+existing ones. Note that if there are several `rome.properties` files in the
+different classpath entries all of them are processed. The order of processing
+depends on how the `ClassLoader` processes the classpath entries, this is
+normally done in the order of appearance - of the entry - in the classpath.
 
-After loading the default plugins definition file, ROME looks for additional
-plugins definition files in all the CLASSPATH entries, this time at root level,
-`/rome.properties`. And appends the plugins definitions to the existing ones.
-Note that if there are several `/rome.properties` files in the different
-CLASSPATH entries all of them are processed. The order of processing depends on
-how the `ClassLoader` processes the CLASSPATH entries, this is normally done in
-the order of appearance -of the entry- in the CLASSPATH.
-
-For each type of plugin (parser, generator, converter, ect) a list of available
+For each type of plugin (parser, generator, converter, etc) a list of available
 plugins is built following the read order just described. The plugins classes
 are then loaded and instantiated. All plugins have some kind of primary key. In
-the case or parsers, generators and converters the primary key is the type of
+the case of parsers, generators and converters the primary key is the type of
 feed they handle. In the case of modules, the primary key is the module URI. If
-a plugin list definition (the aggregation of all the plugins of the same time
-from all the `rome.properties`) contains more than one plugin with the same
-primary key, the latter one is the one that will be used(this enables replacing
-default plugins with custom ones).
+a plugin list definition (the aggregation of all plugins of the same time from
+all `rome.properties`) contains more than one plugin with the same primary key,
+the latter one is the one that will be used (this enables replacing default
+plugins with custom ones).
 
 The plugins are read, loaded and managed by the implementation class
 `com.rometools.rome.io.impl.PluginManager`. This class is an abstract class and
@@ -48,7 +42,7 @@ it is extended to provide support for each type of plugin.
 
 Parser plugins are managed by the `com.rometools.rome.io.impl.FeedParsers` class
 (subclass of the `PluginManager`). This plugin manager looks for the
-`WireFeedParser.classes` property in all the `rome.properties` files. The fully
+`WireFeedParser.classes` property in all `rome.properties` files. The fully
 qualified names of the parser classes must be separated by whitespaces or
 commas. For example, the default `rome.properties` file parser plugins
 definition is as follows:
@@ -56,15 +50,15 @@ definition is as follows:
 ```properties
 # Feed Parser implementation classes
 WireFeedParser.classes=com.rometools.rome.io.impl.RSS090Parser \
-                        com.rometools.rome.io.impl.RSS091NetscapeParser \
-                        com.rometools.rome.io.impl.RSS091UserlandParser \
-                        com.rometools.rome.io.impl.RSS092Parser \
-                        com.rometools.rome.io.impl.RSS093Parser \
-                        com.rometools.rome.io.impl.RSS094Parser \
-                        com.rometools.rome.io.impl.RSS10Parser  \
-                        com.rometools.rome.io.impl.RSS20wNSParser  \
-                        com.rometools.rome.io.impl.RSS20Parser  \
-                        com.rometools.rome.io.impl.Atom03Parser
+                       com.rometools.rome.io.impl.RSS091NetscapeParser \
+                       com.rometools.rome.io.impl.RSS091UserlandParser \
+                       com.rometools.rome.io.impl.RSS092Parser \
+                       com.rometools.rome.io.impl.RSS093Parser \
+                       com.rometools.rome.io.impl.RSS094Parser \
+                       com.rometools.rome.io.impl.RSS10Parser \
+                       com.rometools.rome.io.impl.RSS20wNSParser \
+                       com.rometools.rome.io.impl.RSS20Parser \
+                       com.rometools.rome.io.impl.Atom03Parser
 ```
 
 All the classes defined in this property have to implement the
@@ -76,22 +70,22 @@ key. If more than one parser returns the same type, the latter one prevails.
 
 Generator plugins are managed by the `com.rometools.rome.io.impl.FeedGenerators`
 class (subclass of the `PluginManager`). This plugin manager looks for the
-`WireFeedGenerator.classes` property in all the `rome.properties` files. The
-fully qualified names of the generator classes must be separated by whitespaces
-or commas. For example, the default `rome.properties` file generator plugins
+`WireFeedGenerator.classes` property in all `rome.properties` files. The fully
+qualified names of the generator classes must be separated by whitespaces or
+commas. For example, the default `rome.properties` file generator plugins
 definition is as follows:
 
 ```properties
 # Feed Generator implementation classes
 WireFeedGenerator.classes=com.rometools.rome.io.impl.RSS090Generator \
-                            com.rometools.rome.io.impl.RSS091NetscapeGenerator \
-                            com.rometools.rome.io.impl.RSS091UserlandGenerator \
-                            com.rometools.rome.io.impl.RSS092Generator \
-                            com.rometools.rome.io.impl.RSS093Generator \
-                            com.rometools.rome.io.impl.RSS094Generator \
-                            com.rometools.rome.io.impl.RSS10Generator  \
-                            com.rometools.rome.io.impl.RSS20Generator  \
-                            com.rometools.rome.io.impl.Atom03Generator
+                          com.rometools.rome.io.impl.RSS091NetscapeGenerator \
+                          com.rometools.rome.io.impl.RSS091UserlandGenerator \
+                          com.rometools.rome.io.impl.RSS092Generator \
+                          com.rometools.rome.io.impl.RSS093Generator \
+                          com.rometools.rome.io.impl.RSS094Generator \
+                          com.rometools.rome.io.impl.RSS10Generator \
+                          com.rometools.rome.io.impl.RSS20Generator \
+                          com.rometools.rome.io.impl.Atom03Generator
 ```
 
 All the classes defined in this property have to implement the
@@ -103,22 +97,22 @@ key. If more than one generator returns the same type, the latter one prevails.
 
 Converter plugins are managed by the `com.rometools.rome.synd.impl.Converters`
 class (subclass of the `PluginManager`). This plugin manager looks for the
-`Converter.classes` property in all the `rome.properties` files. The fully
-qualified names of the converter classes must be separated by whitespaces or
-commas. For example, the default `rome.properties` file converter plugins
-definition is as follows:
+`Converter.classes` property in all `rome.properties` files. The fully qualified
+names of the converter classes must be separated by whitespaces or commas. For
+example, the default `rome.properties` file converter plugins definition is as
+follows:
 
 ```properties
 # Feed Conversor implementation classes
 Converter.classes=com.rometools.rome.feed.synd.impl.ConverterForAtom03 \
-                    com.rometools.rome.feed.synd.impl.ConverterForRSS090 \
-                    com.rometools.rome.feed.synd.impl.ConverterForRSS091Netscape \
-                    com.rometools.rome.feed.synd.impl.ConverterForRSS091Userland \
-                    com.rometools.rome.feed.synd.impl.ConverterForRSS092 \
-                    com.rometools.rome.feed.synd.impl.ConverterForRSS093 \
-                    com.rometools.rome.feed.synd.impl.ConverterForRSS094 \
-                    com.rometools.rome.feed.synd.impl.ConverterForRSS10  \
-                    com.rometools.rome.feed.synd.impl.ConverterForRSS20
+                  com.rometools.rome.feed.synd.impl.ConverterForRSS090 \
+                  com.rometools.rome.feed.synd.impl.ConverterForRSS091Netscape \
+                  com.rometools.rome.feed.synd.impl.ConverterForRSS091Userland \
+                  com.rometools.rome.feed.synd.impl.ConverterForRSS092 \
+                  com.rometools.rome.feed.synd.impl.ConverterForRSS093 \
+                  com.rometools.rome.feed.synd.impl.ConverterForRSS094 \
+                  com.rometools.rome.feed.synd.impl.ConverterForRSS10 \
+                  com.rometools.rome.feed.synd.impl.ConverterForRSS20
 ```
 
 All the classes defined in this property have to implement the
@@ -147,8 +141,8 @@ level only.
 Module parser plugins are managed by the
 `com.rometools.rome.io.impl.ModuleParsers` class (subclass of the
 `PluginManager`). This plugin manager looks for the `.feed.ModuleParser.classes`
-and the `.item.ModuleParser.classes` properties in all the `rome.properties`
-files. must be the type defined by the parser (ie: rss_1.0, atom_0.3). The fully
+and the `.item.ModuleParser.classes` properties in all `rome.properties` files
+must be the type defined by the parser (ie: rss_1.0, atom_0.3). The fully
 qualified names of the module parser classes must be separated by whitespaces or
 commas. For example, the default `rome.properties` file modules parser plugins
 definition is as follows:
@@ -156,14 +150,14 @@ definition is as follows:
 ```properties
 # Parsers for Atom 0.3 feed modules
 atom_0.3.feed.ModuleParser.classes=com.rometools.rome.io.impl.SyModuleParser \
-                            com.rometools.rome.io.impl.DCModuleParser
+                                   com.rometools.rome.io.impl.DCModuleParser
 
 # Parsers for Atom 0.3 entry modules
 atom_0.3.item.ModuleParser.classes=com.rometools.rome.io.impl.DCModuleParser
 
 # Parsers for RSS 1.0 feed modules
 rss_1.0.feed.ModuleParser.classes=com.rometools.rome.io.impl.SyModuleParser \
-                            com.rometools.rome.io.impl.DCModuleParser
+                                  com.rometools.rome.io.impl.DCModuleParser
 
 # Parsers for RSS 1.0 item modules
 rss_1.0.item.ModuleParser.classes=com.rometools.rome.io.impl.DCModuleParser
@@ -185,7 +179,7 @@ Module generator plugins are managed by the
 `com.rometools.rome.io.impl.GeneratorParsers` class (subclass of the
 `PluginManager`). This plugin manager looks for the
 `.feed.ModuleGenerator.classes` and the `.item.ModuleGenerator.classes`
-properties in all the `rome.properties` files. must be the type defined by the
+properties in all `rome.properties` files. must be the type defined by the
 generator (ie: rss_1.0, atom_0.3). The fully qualified names of the module
 generator classes must be separated by whitespaces or commas. For example, the
 default `rome.properties` file modules generator plugins definition is as
@@ -194,14 +188,14 @@ follows:
 ```properties
 # Generators for Atom 0.3 feed modules
 atom_0.3.feed.ModuleGenerator.classes=com.rometools.rome.io.impl.SyModuleGenerator \
-                                com.rometools.rome.io.impl.DCModuleGenerator
+                                      com.rometools.rome.io.impl.DCModuleGenerator
 
 # Generators for Atom 0.3 entry modules
 atom_0.3.item.ModuleGenerator.classes=com.rometools.rome.io.impl.DCModuleGenerator
 
 # Generators for RSS 1.0 feed modules
 rss_1.0.feed.ModuleGenerator.classes=com.rometools.rome.io.impl.SyModuleGenerator \
-                                com.rometools.rome.io.impl.DCModuleGenerator
+                                     com.rometools.rome.io.impl.DCModuleGenerator
 
 # Generators for RSS_1.0 entry modules
 rss_1.0.item.ModuleGenerator.classes=com.rometools.rome.io.impl.DCModuleGenerator
@@ -213,11 +207,8 @@ rss_2.0.feed.ModuleGenerator.classes=
 rss_2.0.item.ModuleGenerator.classes=
 ```
 
-All the classes defined in this property have to implement the
+All classes defined in this property have to implement the
 `com.rometools.rome.io.ModuleGenerator` interface. ModuleGenerator instances
-must be thread safe. The return value of the `getNamesapceUri()` method is used
+must be thread safe. The return value of the `getNamespaceUri()` method is used
 as the primary key. If more than one module generator returns the same URI, the
 latter one prevails.
-
-See also: a step-by-step [tutorial for implementing a custom
-module](../getting-started/custom-module.md).

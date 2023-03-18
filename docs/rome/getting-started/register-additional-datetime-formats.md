@@ -15,9 +15,9 @@ To help cope with this ROME makes a few tricks:
 Additional datetime formats can be specified as `datetime.extra.masks` in a
 `rome.properties` file that has to be placed in the root of the classpath. To
 register more than one mask, the masks have to be seperated with '|' characters.
-The syntax for the masks is the one used by the `java.text.SimpleDateFormat`
-class assuming the US locale by default. If datetime masks are specified in more
-than one `rome.properties` file in the classpath, they will be aggregated.
+The syntax for the masks is the one used by `java.text.SimpleDateFormat`
+assuming the US locale by default. If datetime masks are specified in more than
+one `rome.properties` file in the classpath, they will be aggregated.
 
 ## Example
 ```properties

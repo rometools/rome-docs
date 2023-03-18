@@ -1,8 +1,8 @@
 # Date mapping
 
-The different RSS versions and Atom define different date elements at feed and
-entry level. Some of them also define syndication information indicating when
-(and when not) and how often to fetch feeds for updates. There is not always a
+Different RSS and Atom versions define different date elements at feed and entry
+level. Some of them also define syndication informations indicating when (and
+when not) and how often to fetch feeds for updates. There is not always a
 possible mapping or conversion of this information when going from one format to
 another.
 
@@ -17,23 +17,23 @@ When handling feeds at `SyndFeed` level, there is only the `publishedDate` date
 element available on `SyndFeed` and `SyndEntry`. In addition, it is possible to
 use the Syndication module.
 
-The mapping of the date elements from the different feed formats to `SyndFeed`
-is as follows.
+The mapping of the date elements from different feed formats to `SyndFeed` is as
+follows.
 
-## For RSS 0.90
+## RSS 0.90
 
 RSS 0.90 does not define date elements.
 
 There is no mapping to `SyndFeed` and `SyndEntry` date properties.
 
-## For RSS 0.91, 0.92
+## RSS 0.91 and 0.92
 
 RSS 0.91 and 0.92 define `pubDate` and `lastBuildDate` at feed level.
 
 The feed `pubDate` element is mapped to the `SyndFeed` `publishedDate` property.
 The `lastBuildDate` element is lost.
 
-## For RSS 0.93, 0.94 and 2.0
+## RSS 0.93, 0.94 and 2.0
 
 RSS 0.93, 0.94 and 2.0 define `pubDate` and `lastBuildDate` at feed level. They
 also define `pubDate` and `expirationDate` at item level.
@@ -44,15 +44,15 @@ The `lastBuildDate` element is lost.
 The item `pubDate` element is mapped to the `SyndEntry` `publishedDate`
 property. The `expirationDate` element is lost.
 
-## For RSS 1.0
+## RSS 1.0
 
-RSS 1.0 use DC Module data at feed an item level to indicate date information
+RSS 1.0 uses DC Module data at feed and item level to indicate date information
 about the feed and the items.
 
 `SyndFeed` and `SyndEntry` use the DC Module `date` element for the
 `publishedDate` property.
 
-## For Atom 0.3
+## Atom 0.3
 
 Atom 0.3 defines a `modified` element at feed level and the `modified`,
 `created` and `issued` elements at entry level.
@@ -63,10 +63,10 @@ property.
 The item `modified` element is mapped to the `SyndEntry` `publishedDate`
 property. The entry elements `created` and `issued` are lost.
 
-## For Atom 1.0
+## Atom 1.0
 
 Atom 1.0 defines an `updated` element at the feed level, which ROME maps to
-`SyndFeed.publishedDate`.
+the `SyndFeed` `publishedDate` property.
 
 Atom 1.0 defines `updated` and `published` elements at the entry level, which
-ROME maps to `SyndEntry.updatedDate` and `SyndEntry.publishedDate` respectively.
+ROME maps to `SyndEntry` `updatedDate` and `publishedDate` respectively.

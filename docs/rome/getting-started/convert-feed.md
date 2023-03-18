@@ -14,6 +14,7 @@ feed.setFeedType("rss_2.0");
 
 // write feed
 String xml = new SyndFeedOutput().outputString(feed);
+System.out.println(xml);
 ```
 
 !!! Note 

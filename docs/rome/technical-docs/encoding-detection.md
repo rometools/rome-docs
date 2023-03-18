@@ -4,19 +4,18 @@ Determining the charset set encoding of an XML document it may prove not as easy
 as it seems, and when the XML document is served over HTTP things get a little
 more hairy.
 
-Current Java libraries or utilities don't do this by default, A JAXP SAX parser
+Current Java libraries or utilities don't do this by default. A JAXP SAX parser
 may detect the charset encoding of a XML document looking at the first bytes of
-the stream as defined Section 4.3.3 and Appendix F.1 of the in [XML 1.0 (Third
-Edition)](http://www.w3.org/TR/2004/REC-xml-20040204/) specification. But
+the stream as defined in Section 4.3.3 and Appendix F.1 of the in [XML 1.0
+(Third Edition)](http://www.w3.org/TR/2004/REC-xml-20040204/) specification. But
 Appendix F.1 is non-normative and not all Java XML parsers do it right now. For
-example the JAXP SAX parser implementation in
-[J2SE 1.4.2](http://java.sun.com/j2se/1.4.2) does not handle Appendix F.1 and
-[Xerces 2.6.2](http://xml.apache.org/xerces2-j/) just added support for it. But
-still this does not solve the whole problem. JAXP SAX parsers are not aware of
-the HTTP transport rules for charset encoding resolution as defined by [RFC
-3023](http://www.ietf.org/rfc/rfc3023.txt). They are not because they operate on
-a byte stream or a char stream without any knowledge of the stream transport
-protocol, HTTP in this case.
+example the JAXP SAX parser implementation in J2SE 1.4.2 does not handle
+Appendix F.1 and [Xerces 2.6.2](http://xml.apache.org/xerces2-j/) just added
+support for it. But still this does not solve the whole problem. JAXP SAX
+parsers are not aware of the HTTP transport rules for charset encoding
+resolution as defined by [RFC 3023](http://www.ietf.org/rfc/rfc3023.txt). They
+are not because they operate on a byte stream or a char stream without any
+knowledge of the stream transport protocol, HTTP in this case.
 
 [Mark Pilgrim](https://en.wikipedia.org/wiki/Mark_Pilgrim) did a very good job
 explaining how the charset encoding should be determined, [Determining the
@@ -24,11 +23,12 @@ character encoding of a feed
 (Archived)](https://web.archive.org/web/20060706153721/http://diveintomark.org/archives/2004/02/13/xml-media-types)
 and [XML on the Web Has Failed](http://www.xml.com/pub/a/2004/07/21/dive.html).
 
-To isolate developers from this issue ROME has a special character stream class,
-the *XmlReader*. The *XmlReader* class is a subclass of the *java.io.Reader*
-that detects the charset encoding of XML documents read from files, input
-streams, URLs and input streams obtained over HTTP. Ideally this should be built
-into the JAXP SAX classes, most likely in the InputSource class.
+To isolate developers from this issue, ROME has a special character stream
+class, the `XmlReader`. The `XmlReader` class is a subclass of the
+`java.io.Reader` that detects the charset encoding of XML documents read from
+files, input streams, URLs and input streams obtained over HTTP. Ideally this
+should be built into the JAXP SAX classes, most likely in the `InputSource`
+class.
 
 ## Default Lenient Behavior
 
@@ -38,8 +38,8 @@ knowledge, to declare an invalid charset encoding. Invalid according to the XML
 charset encoding in the HTTP content-type and the explicit charset encoding in
 the XML prolog.
 
-Because of this, ROME XmlReader by default has a lenient detection. This lenient
-detection works in the following order:
+Because of this, ROME `XmlReader` by default has a lenient detection. This
+lenient detection works in the following order:
 
 - A strict charset encoding detection, as specified by the Algorithms below is
   attempted
@@ -49,13 +49,13 @@ detection works in the following order:
 - If the content type had a charset encoding that encoding is used
 - 'UTF-8' is used
 
-The XmlReader class has 2 constructors that allow a strict (non-lenient) charset
-encoding detection to be performed. This constructors take a lenient boolean
-flag, the flag should be set to *false* for a strict detection.
+The `XmlReader` class has 2 constructors that allow a strict (non-lenient)
+charset encoding detection to be performed. This constructors take a `lenient`
+boolean flag, the flag should be set to `false` for a strict detection.
 
 ## The Algorithms per XML 1.0 and RFC 3023 specifications
 
-Following it's a detailed explanation on the algorithms the *XmlReader* uses to
+Following it's a detailed explanation on the algorithms the `XmlReader` uses to
 determine the charset encoding. These algorithms first appeared in [Tucu's
 Weblog](http://blogs.sun.com/roller/page/tucu/Weblog).
 

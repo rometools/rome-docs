@@ -24,11 +24,11 @@ Besides support for plain RSS and Atom we offer some extensions:
 
 ## Motivation
 
-Various flavors of RSS and Atom syndication formats were reaching a tipping
-point in 2004. At Sun we started various projects involving these Syndication
-formats, but when looking around for Java libraries to take care of the parsing
-and generation of RSS we were not satisfied with what we found. ROME was started
-out of this frustration.
+Various flavors of RSS and Atom formats were reaching a tipping point in 2004.
+At Sun we started various projects involving these Syndication formats, but when
+looking around for Java libraries to take care of the parsing and generation of
+RSS we were not satisfied with what we found. ROME was started out of this
+frustration.
 
 Our requirements are to **ESCAPE** the Syndication Feeds Hell. In order to allow
 that the library must be:
@@ -37,10 +37,10 @@ that the library must be:
   underlying format, and serialize the feed object to the format I want.
 - **S**imple: RSS initially stood for _Really Simple Syndication_[^1] and this
   simplicity is what made the format successful. Specification wars have made
-  the current situation much more complicated. The goal of the library is to
-  give that simplicity back to developers: each API we use force on us a mental
-  model of the domain and we are using more and more libraries on each project
-  we implement. This library tries to ease the cognitive load of developers and
+  the situation much more complicated. The goal of the library is to give that
+  simplicity back to developers: each API we use force on us a mental model of
+  the domain and we are using more and more libraries on each project we
+  implement. This library tries to ease the cognitive load of developers and
   provides a very simple model for feeds and entries, abstracting out the
   details of the various underlying formats.
 - **C**omplete: must handle all versions of RSS and Atom.
@@ -51,7 +51,7 @@ that the library must be:
   format. If I need them, lets me access optional metadata expressed in
   extensions accepted by various formats (RSS 1.0 modules, other namespaces in
   Atom).
-- **E**xtensible: It needs to define a simple pluggable architecture to provide
+- **E**xtensible: it needs to define a simple pluggable architecture to provide
   support for future extensions of the formats.
 
 We set out to create this library in the same spirit as the

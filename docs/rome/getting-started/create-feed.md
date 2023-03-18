@@ -1,6 +1,6 @@
 # Create feed
 
-ROME represents feeds as instances of the `SyndFeed` interface. The SyndFeed
+ROME represents feeds as instances of the `SyndFeed` interface. The `SyndFeed`
 interface and its properties follow the JavaBean specification.
 
 ## RSS 2.0 example

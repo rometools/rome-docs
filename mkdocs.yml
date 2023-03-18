@@ -37,8 +37,8 @@ nav:
     - 'Encoding detection': 'rome/technical-docs/encoding-detection.md'
     - 'Feed parsing': 'rome/technical-docs/feed-parsing.md'
     - 'OSGi': 'rome/technical-docs/osgi.md'
-    - 'Plugin Mechanism': 'rome/technical-docs/plugin-mechanism.md'
-    - 'URI Mapping': 'rome/technical-docs/uri-mapping.md'
+    - 'Plugin mechanism': 'rome/technical-docs/plugin-mechanism.md'
+    - 'URI mapping': 'rome/technical-docs/uri-mapping.md'
   - 'ROME Certiorem':
     - 'Introduction': 'rome-certiorem/index.md'
     - 'Getting started': 'rome-certiorem/getting-started.md'

@@ -1,8 +1,8 @@
 # Preserve WireFeed
 
 `WireFeed` is the base class for all RSS and Atom specific feed classes. To
-preserve it while parsing set the property `preserveWireFeed` of `SyndFeedInput`
-to `true`.
+preserve it while parsing, set the property `preserveWireFeed` of
+`SyndFeedInput` to `true`.
 
 ```java
 File file = new File("feed.xml");
