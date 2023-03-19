@@ -1,25 +1,76 @@
 # Creative Commons
 
-!!! warning "TODO"
-    This page needs to be revised
+The
+[Creative Commons Module](http://backend.userland.com/creativeCommonsRssModule)
+provides a unified rights and license system for Atom and RSS feeds.
 
-This plugin is for use with feeds from Creative Commons license.
+## Sample
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule" version="2.0">
+  <channel>
+    <title>Title</title>
+    <description>Description</description>
+    <link>https://example.org/feed</link>
+    <creativeCommons:license>http://creativecommons.org/licenses/nc/1.0/</creativeCommons:license>
+    <item>
+      <title>Title</title>
+      <description>Description</description>
+      <link>https://example.org/entry</link>
+      <guid>https://example.org/entry</guid>
+      <creativeCommons:license>http://creativecommons.org/licenses/by/2.5/</creativeCommons:license>
+    </item>
+  </channel>
+</rss>
+```
 
-This module provides a unified rights and license system for both the RSS2/Atom
-and RSS/RDF namespace. However, if you wish to **generate** RDF/RSS feeds, you
-need to use a CVS build of ROME (or a version higher than 0.8).
-
-### Sample Usage
+## Create feed
 
 ```java
-CreativeCommons commons = new CreativeCommonsImpl();
-commons.setLicense( new License[]{ License.NONCOMMERCIAL } );
-// Note, you do not have to setAllLicenses right now. When the RSS1 functionality is
-// added, this will be required at the Feed level only.
-ArrayList modules = new ArrayList()
-modules.add( commons );
-syndEntry.setModules( commons );
+// create entry
+SyndContent description = new SyndContentImpl();
+description.setValue("Description");
 
-//Alternately, to get the module:
-CreativeCommons commons = (CreativeCommons) syndFeed.getModule( CreativeCommons.URI );
+CreativeCommons entryLicense = new CreativeCommonsImpl();
+entryLicense.setLicenses(new License[] { License.ATTRIBUTION });
+
+SyndEntry entry = new SyndEntryImpl();
+entry.setTitle("Title");
+entry.setDescription(description);
+entry.setLink("https://example.org/entry");
+entry.getModules().add(entryLicense);
+
+// assemble feed
+CreativeCommons feedLicense = new CreativeCommonsImpl();
+feedLicense.setLicenses(new License[] { License.NONCOMMERCIAL });
+
+SyndFeed feed = new SyndFeedImpl();
+feed.setFeedType("rss_2.0");
+feed.setTitle("Title");
+feed.setDescription("Description");
+feed.setLink("https://example.org/feed");
+feed.getEntries().add(entry);
+feed.getModules().add(feedLicense);
+
+// write feed
+String xml = new SyndFeedOutput().outputString(feed);
+```
+
+## Read feed
+
+```
+Reader reader = new StringReader(xml);
+SyndFeed feed = new SyndFeedInput().build(reader);
+
+// extract license from feed
+CreativeCommons feedModule = (CreativeCommons) feed.getModule(CreativeCommons.URI);
+License[] feedLicenses = feedModule.getLicenses();
+
+// extract license from entry
+for (SyndEntry entry : feed.getEntries()) {
+
+    CreativeCommons entryModule = (CreativeCommons) entry.getModule(CreativeCommons.URI);
+    License[] entryLicenses = entryModule.getLicenses();
+
+}
 ```

@@ -32,7 +32,7 @@ The `ToStringBean` class provides a reflection-based implementation of the
 `toString` method.
 
 ```java
-public class MyBean implements ToString {
+public class MyBean {
 
     // [...]
 
@@ -51,11 +51,13 @@ The `CloneableBean` class provides a reflection-based implementation of the
 ```java
 public class MyBean implements Cloneable {
 
-    // [...]
+	private static final Set<String> IGNORE_PROPERTIES = Collections.emptySet();
 
-    public Object clone() {
-        return CloneableBean().beanClone(this, ignore);
-    }
+	// [...]
+
+	public Object clone() throws CloneNotSupportedException {
+		return CloneableBean.beanClone(this, IGNORE_PROPERTIES);
+	}
 
 }
 ```

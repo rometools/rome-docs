@@ -1,34 +1,66 @@
 # GeoRSS
 
-!!! warning "TODO"
-    This page needs to be revised
+This module add support for [GeoRSS](https://en.wikipedia.org/wiki/GeoRSS).
 
-This ROME plugin is for adding location information to RSS/Atom.
+## Sample
 
-### Sample Usage
-
-```java
-SyndFeedInput input = new SyndFeedInput();
-SyndFeed feed = input.build(new XmlReader(new URL("http://www.geonames.org/recent-changes.xml")));
-
-List<SyndEntry>; entries = feed.getEntries();
-for (SyndEntry entry : entries) {
-    GeoRSSModule geoRSSModule = GeoRSSUtils.getGeoRSS(entry);
-    System.out.println(entry.getTitle() + " : lat="
-        + geoRSSModule.getLatitude() + ",lng="
-        + geoRSSModule.getLongitude() + ", desc="
-        + entry.getDescription().getValue() + "; time="
-        + entry.getPublishedDate());
-}
-
-//to generate a GeoRSS item
-
-GeoRSSModule geoRSSModule = new W3CGeoModuleImpl();
-//GeoRSSModule geoRSSModule = new SimpleModuleImpl();
-geoRSSModule.setLatitude(47.0);
-geoRSSModule.setLongitude(9.0);
-entry.getModules().add(geoRSSModule);
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:georss="http://www.georss.org/georss" version="2.0">
+  <channel>
+    <title>Title</title>
+    <description>Description</description>
+    <link>https://example.org/feed</link>
+    <item>
+      <title>Title</title>
+      <description>Description</description>
+      <link>https://example.org/entry</link>
+      <guid>https://example.org/entry</guid>
+      <georss:point>47.0 9.0</georss:point>
+    </item>
+  </channel>
+</rss>
 ```
 
-More information here:
-[http://georss.geonames.org/](http://georss.geonames.org/)
+## Create feed
+
+```java
+// create entry
+SyndContent description = new SyndContentImpl();
+description.setValue("Description");
+
+GeoRSSModule geo = new SimpleModuleImpl();
+geo.setPosition(new Position(47.0, 9.0));
+
+SyndEntry entry = new SyndEntryImpl();
+entry.setTitle("Title");
+entry.setDescription(description);
+entry.setLink("https://example.org/entry");
+entry.getModules().add(geo);
+
+// assemble feed
+SyndFeed feed = new SyndFeedImpl();
+feed.setFeedType("rss_2.0");
+feed.setTitle("Title");
+feed.setDescription("Description");
+feed.setLink("https://example.org/feed");
+feed.getEntries().add(entry);
+
+// output feed
+String xml = new SyndFeedOutput().outputString(feed);
+```
+
+## Read feed
+
+```
+Reader reader = new StringReader(xml);
+SyndFeed feed = new SyndFeedInput().build(reader);
+
+for (SyndEntry entry : feed.getEntries()) {
+
+    GeoRSSModule module = GeoRSSUtils.getGeoRSS(entry);
+    double latitude = module.getPosition().getLatitude();
+    double longitude = module.getPosition().getLongitude();
+
+}
+```
