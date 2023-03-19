@@ -54,11 +54,12 @@ feed.getModules().add(feedLicense);
 
 // write feed
 String xml = new SyndFeedOutput().outputString(feed);
+System.out.println(xml);
 ```
 
 ## Read feed
 
-```
+```java
 Reader reader = new StringReader(xml);
 SyndFeed feed = new SyndFeedInput().build(reader);
 

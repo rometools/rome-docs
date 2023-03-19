@@ -1,4 +1,4 @@
-# MediaRSS
+# Yahoo! MediaRSS
 
 !!! warning "TODO"
     This page needs to be revised

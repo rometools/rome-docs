@@ -48,6 +48,7 @@ feed.getEntries().add(entry);
 
 // output feed
 String xml = new SyndFeedOutput().outputString(feed);
+System.out.println(xml);
 ```
 
 ## Read feed
@@ -59,8 +60,12 @@ SyndFeed feed = new SyndFeedInput().build(reader);
 for (SyndEntry entry : feed.getEntries()) {
 
     GeoRSSModule module = GeoRSSUtils.getGeoRSS(entry);
-    double latitude = module.getPosition().getLatitude();
-    double longitude = module.getPosition().getLongitude();
+    Position position = module.getPosition();
+    double latitude = position.getLatitude();
+    double longitude = position.getLongitude();
+    
+    System.out.println(latitude);
+    System.out.println(longitude);
 
 }
 ```

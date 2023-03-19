@@ -3,6 +3,9 @@
 !!! warning "TODO"
     This page needs to be revised
 
+!!! warning "TODO"
+    Check if the module is used at all
+
 This ROME module supports Microsoft Simple Sharing Extensions, an RSS and
 [OPML](../rome-opml/index.md) extension designed to support data synchronization
 between bi-directional feeds.

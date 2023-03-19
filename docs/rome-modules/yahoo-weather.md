@@ -1,4 +1,4 @@
-# Weather
+# Yahoo! WeatherRSS
 
 !!! warning "TODO"
     This page needs to be revised

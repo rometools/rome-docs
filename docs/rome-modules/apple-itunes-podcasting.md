@@ -1,4 +1,4 @@
-# iTunes Podcasting
+# Apple iTunes Podcasting
 
 !!! warning "TODO"
     This page needs to be revised

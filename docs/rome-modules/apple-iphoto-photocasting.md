@@ -1,4 +1,4 @@
-# iPhoto Photocasting
+# Apple iPhoto Photocasting
 
 !!! warning "TODO"
     This page needs to be revised
