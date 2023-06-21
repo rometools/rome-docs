@@ -45,8 +45,8 @@ subsequent change notifications pending a notification to the Hub.
 
 References:
 
-[https://github.com/nlothian/RTUpdates/blob/master/src/com/nicklothian/pubsubhub/PubSubHubSubscriptionServlet.java](https://github.com/nlothian/RTUpdates/blob/master/src/com/nicklothian/pubsubhub/PubSubHubSubscriptionServlet.java)
-[http://grack.com/blog/2009/09/09/parsing-the-pubsubhubbub-notifications/](http://grack.com/blog/2009/09/09/parsing-the-pubsubhubbub-notifications/)
+- [https://github.com/nlothian/RTUpdates/blob/master/src/com/nicklothian/pubsubhub/PubSubHubSubscriptionServlet.java](https://github.com/nlothian/RTUpdates/blob/master/src/com/nicklothian/pubsubhub/PubSubHubSubscriptionServlet.java)
+- [http://grack.com/blog/2009/09/09/parsing-the-pubsubhubbub-notifications/](http://grack.com/blog/2009/09/09/parsing-the-pubsubhubbub-notifications/)
 
 ## Notes on the Code
 

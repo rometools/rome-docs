@@ -1,5 +1,9 @@
 # Installation
 
+## Prerequisites
+
+ROME 1.x requires Java 6 or later.
+
 ## Install from Maven Central
 
 All versions since 1.5.0 are available on Maven Central under the following

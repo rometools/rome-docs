@@ -1,6 +1,6 @@
 # GeoRSS
 
-This module add support for [GeoRSS](https://en.wikipedia.org/wiki/GeoRSS).
+This module adds support for [GeoRSS](https://en.wikipedia.org/wiki/GeoRSS).
 
 ## Sample
 

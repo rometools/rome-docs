@@ -3,7 +3,7 @@
 !!! warning "TODO"
     This page needs to be revised
 
-This plugin is for use with Yahoo! MediaRSS/Flickr Photostreams
+This plugin adds support for Yahoo! MediaRSS feeds and Flickr Photostreams
 
 ## Sample Usage
 
