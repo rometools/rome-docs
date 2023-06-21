@@ -13,7 +13,10 @@
 	"forwardPorts": [8000],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pip3 install --user -r requirements.txt && mkdocs serve"
+	"postCreateCommand": "pip3 install --user -r requirements.txt",
+
+	// Use 'postStartCommand' to run commands after the container is started.
+	"postStartCommand": "mkdocs serve"
 
 	// Configure tool-specific properties.
 	// "customizations": {},
