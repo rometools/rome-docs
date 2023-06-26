@@ -42,19 +42,57 @@ contributor, with Rome you can parse these elements
 </rss>
 ```
 
-## Sample Usage
+## Create feed
 
 ```java
-final SyndFeed feed = new SyndFeedInput().build(
-    new XmlReader(new File("/foo_rss_atom.xml"))));
-feed.getModule(AtomLinkModule.URI);
+Link link1 = new Link();
+link1.setHref("http://test.com");
+link1.setType("application/rss+xml");
+link1.setRel("self");
+
+SyndPerson author1 = new SyndPersonImpl();
+author1.setName("Lorem Ipsum");
+author1.setEmail("test@example.org");
+author1.setUri("http://example.org");
+
+SyndPerson contributor1 = new SyndPersonImpl();
+contributor1.setName("Lorem Ipsum");
+contributor1.setEmail("test@example.org");
+contributor1.setUri("http://example.org");
+
+AtomLinkModule atomLink = new AtomLinkModuleImpl();
+atomLink.getLinks().add(link1);
+atomLink.getAuthors().add(author1);
+atomLink.getContributors().add(contributor1);
+
+SyndContent description = new SyndContentImpl();
+description.setValue("Lorem Ipsum");
+
+SyndEntry entry = new SyndEntryImpl();
+entry.setTitle("Lorem Ipsum");
+entry.setDescription(description);
+entry.setLink("http://example.org");
+entry.getModules().add(atomLink);
+
+SyndFeed feed = new SyndFeedImpl();
+feed.setFeedType("rss_2.0");
+feed.setTitle("test-title");
+feed.setDescription("test-description");
+feed.setLink("https://example.org");
+feed.getEntries().add(entry);
+feed.getModules().add(atomLink);
+
+System.out.println(new SyndFeedOutput().outputString(feed));
 ```
 
-### Read author's email in each entry
+### Read feed
 
 ```java
-final AtomLinkModule feedAtomModule = (AtomLinkModule) feed.getModule(AtomLinkModule.URI);
+SyndFeed feed = new SyndFeedInput().build(
+    new XmlReader(new File("/foo_rss_atom.xml"))));
+
+AtomLinkModule feedAtomModule = (AtomLinkModule) feed.getModule(AtomLinkModule.URI);
 for (SyndPerson author : feedAtomModule.getAuthors()) {
-    LOG.debug(author.getEmail());
+    System.out.println(author.getEmail());
 }
 ```
