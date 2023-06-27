@@ -5,7 +5,7 @@
 
 This plugin is for use with iTunes Music Service podcast listings.
 
-### Sample Usage
+## Sample Usage
 
 ```java
 SyndFeedInput input = new SyndFeedInput();
